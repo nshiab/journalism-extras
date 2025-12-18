@@ -1,5 +1,5 @@
 import { assertEquals } from "jsr:@std/assert";
-import getId from "../../src/other/getId.ts";
+import getId from "../../src/extras/getId.ts";
 
 Deno.test("should create 100 000 unique ids", () => {
   const ids: string[] = [];

@@ -1,4 +1,4 @@
-import prettyDuration from "../format/prettyDuration.ts";
+import { prettyDuration } from "@nshiab/journalism-format";
 
 /**
  * Pauses the execution of an asynchronous function for a specified duration. This utility is useful for introducing delays in workflows, throttling requests, or simulating real-world latencies.

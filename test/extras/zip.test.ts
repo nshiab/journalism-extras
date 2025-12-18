@@ -1,5 +1,5 @@
 import { assertEquals } from "jsr:@std/assert";
-import zip from "../../src/other/zip.ts";
+import zip from "../../src/extras/zip.ts";
 
 Deno.test("should zip multiple files together", () => {
   zip(

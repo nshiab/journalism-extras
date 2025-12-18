@@ -1,6 +1,6 @@
 import { existsSync } from "node:fs";
 import { assertEquals } from "jsr:@std/assert";
-import createDirectory from "../../src/other/createDirectory.ts";
+import createDirectory from "../../src/extras/createDirectory.ts";
 
 const outputPath = "./test/output/folder";
 const outputPathRecursive = "./test/output/folder/subfolder/subsubfolder";

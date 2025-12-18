@@ -1,4 +1,4 @@
-import prettyDuration from "../format/prettyDuration.ts";
+import { prettyDuration } from "@nshiab/journalism-format";
 
 /**
  * A utility class for tracking the progress and estimating the remaining time of iterative processes. It calculates the average duration of completed iterations and uses this to project the time left for the remaining tasks. This is particularly useful for long-running operations where users need feedback on progress.

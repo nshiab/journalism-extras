@@ -23,6 +23,8 @@
   },
   "nodeModulesDir": "auto",
   "imports": {
+    "@nshiab/journalism-format": "jsr:@nshiab/journalism-format@^1.0.2",
+    "adm-zip": "npm:adm-zip@^0.5.16"
   },
   "compilerOptions": {
     "lib": [

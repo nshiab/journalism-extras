@@ -1,5 +1,5 @@
 import { assertEquals } from "jsr:@std/assert";
-import unzip from "../../src/other/unzip.ts";
+import unzip from "../../src/extras/unzip.ts";
 import { copyFileSync, existsSync, mkdirSync } from "node:fs";
 
 const outputPath = "./test/output/";

@@ -1,7 +1,7 @@
 import { existsSync } from "node:fs";
 import { assertEquals } from "jsr:@std/assert";
-import createDirectory from "../../src/other/createDirectory.ts";
-import removeDirectory from "../../src/other/removeDirectory.ts";
+import createDirectory from "../../src/extras/createDirectory.ts";
+import removeDirectory from "../../src/extras/removeDirectory.ts";
 
 const outputPath = "./test/output/folderToRemove";
 const outputPathRecursive =

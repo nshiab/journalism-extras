@@ -1,6 +1,6 @@
 import { assertEquals } from "jsr:@std/assert";
-import DurationTracker from "../../src/other/DurationTracker.ts";
-import sleep from "../../src/other/sleep.ts";
+import DurationTracker from "../../src/extras/DurationTracker.ts";
+import sleep from "../../src/extras/sleep.ts";
 
 Deno.test("should log the remaining time", async () => {
   const data = [0, 1, 2, 3, 4];
