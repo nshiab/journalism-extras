@@ -26,11 +26,13 @@ import removeDirectory from "./extras/removeDirectory.ts";
 import getId from "./extras/getId.ts";
 import sleep from "./extras/sleep.ts";
 import DurationTracker from "./extras/DurationTracker.ts";
+import reencode from "./extras/reencode.ts";
 
 export {
   createDirectory,
   DurationTracker,
   getId,
+  reencode,
   removeDirectory,
   sleep,
   unzip,

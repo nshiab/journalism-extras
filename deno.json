@@ -24,7 +24,8 @@
   "nodeModulesDir": "auto",
   "imports": {
     "@nshiab/journalism-format": "jsr:@nshiab/journalism-format@^1.0.2",
-    "adm-zip": "npm:adm-zip@^0.5.16"
+    "adm-zip": "npm:adm-zip@^0.5.16",
+    "iconv-lite": "npm:iconv-lite@^0.7.0"
   },
   "compilerOptions": {
     "lib": [
