@@ -60,9 +60,7 @@ export default async function reencode(
 
     await pipeline(
       readStream,
-      // @ts-expect-error - iconv types are incomplete
       iconv.decodeStream(fromEncoding),
-      // @ts-expect-error - iconv types are incomplete
       iconv.encodeStream(toEncoding),
       writeStream,
     );
