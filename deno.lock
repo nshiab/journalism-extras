@@ -1,17 +1,17 @@
 {
   "version": "5",
   "specifiers": {
-    "jsr:@nshiab/journalism-format@^1.0.2": "1.0.2",
+    "jsr:@nshiab/journalism-format@^1.0.3": "1.0.3",
     "jsr:@std/assert@*": "1.0.16",
     "jsr:@std/internal@^1.0.12": "1.0.12",
     "npm:adm-zip@~0.5.16": "0.5.16",
     "npm:d3-dsv@^3.0.1": "3.0.1",
     "npm:date-fns-tz@^3.2.0": "3.2.0_date-fns@4.1.0",
-    "npm:iconv-lite@0.7": "0.7.1"
+    "npm:iconv-lite@~0.7.2": "0.7.2"
   },
   "jsr": {
-    "@nshiab/journalism-format@1.0.2": {
-      "integrity": "2974e5ce6a542c3e8457476d3c9f5f1d17ede6fe44652a9e65a0f8f62727cafd",
+    "@nshiab/journalism-format@1.0.3": {
+      "integrity": "27959c59abe5c2ccce74160b13f6260db9de4bc99cc1ada06501df5718f88ceb",
       "dependencies": [
         "npm:d3-dsv",
         "npm:date-fns-tz"
@@ -58,8 +58,8 @@
         "safer-buffer"
       ]
     },
-    "iconv-lite@0.7.1": {
-      "integrity": "sha512-2Tth85cXwGFHfvRgZWszZSvdo+0Xsqmw8k8ZwxScfcBneNUraK+dxRxRm24nszx80Y0TVio8kKLt5sLE7ZCLlw==",
+    "iconv-lite@0.7.2": {
+      "integrity": "sha512-im9DjEDQ55s9fL4EYzOAv0yMqmMBSZp6G0VvFyTMPKWxiSBHUj9NW/qqLmXUwXrrM7AvqSlTCfvqRb0cM8yYqw==",
       "dependencies": [
         "safer-buffer"
       ]
@@ -73,9 +73,9 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@nshiab/journalism-format@^1.0.2",
+      "jsr:@nshiab/journalism-format@^1.0.3",
       "npm:adm-zip@~0.5.16",
-      "npm:iconv-lite@0.7"
+      "npm:iconv-lite@~0.7.2"
     ]
   }
 }
