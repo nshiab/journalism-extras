@@ -158,7 +158,7 @@ function getId(length?: number): string;
 
 ### Parameters
 
-- **`length`**: - The desired length of the generated ID. Defaults to 6.
+- **`length`**: The desired length of the generated ID. Defaults to 6.
 
 ### Returns
 
@@ -202,20 +202,20 @@ async function reencode(
 
 ### Parameters
 
-- **`inputFilePath`**: - The absolute path to the input file that needs to be
+- **`inputFilePath`**: The absolute path to the input file that needs to be
   re-encoded.
-- **`outputFilePath`**: - The absolute path where the converted file will be
+- **`outputFilePath`**: The absolute path where the converted file will be
   saved.
-- **`fromEncoding`**: - The character encoding of the input file (e.g.,
+- **`fromEncoding`**: The character encoding of the input file (e.g.,
   'windows-1252', 'latin1', 'ISO-8859-1').
-- **`toEncoding`**: - The desired character encoding for the output file (e.g.,
+- **`toEncoding`**: The desired character encoding for the output file (e.g.,
   'utf-8').
-- **`options`**: - Optional configuration settings for the re-encoding process.
-- **`options.bufferSize`**: - The size of the read buffer in kilobytes (KB). A
+- **`options`**: Optional configuration settings for the re-encoding process.
+- **`options.bufferSize`**: The size of the read buffer in kilobytes (KB). A
   larger buffer can improve performance for very large files but consumes more
   memory. Defaults to `256` KB.
-- **`options.addBOM`**: - If `true`, a Byte Order Mark (BOM) will be added to
-  the output file if the `toEncoding` is UTF-8. A BOM can help some applications
+- **`options.addBOM`**: If `true`, a Byte Order Mark (BOM) will be added to the
+  output file if the `toEncoding` is UTF-8. A BOM can help some applications
   correctly identify the UTF-8 encoding. Defaults to `false`.
 
 ### Returns
@@ -256,7 +256,7 @@ function removeDirectory(path: string): void;
 
 ### Parameters
 
-- **`path`**: - The absolute or relative path to the directory to be removed.
+- **`path`**: The absolute or relative path to the directory to be removed.
 
 ### Returns
 
@@ -300,14 +300,14 @@ function sleep(
 
 ### Parameters
 
-- **`ms`**: - The number of milliseconds to pause execution for. This is the
+- **`ms`**: The number of milliseconds to pause execution for. This is the
   target duration of the sleep.
-- **`options`**: - Optional parameters to customize the sleep behavior.
-- **`options.start`**: - A `Date` object representing a starting timestamp. If
+- **`options`**: Optional parameters to customize the sleep behavior.
+- **`options.start`**: A `Date` object representing a starting timestamp. If
   provided, the function will subtract the time elapsed since this `start` time
   from the `ms` duration. This is particularly useful for respecting API rate
   limits.
-- **`options.log`**: - If `true`, the function will log messages to the console
+- **`options.log`**: If `true`, the function will log messages to the console
   indicating the sleep duration or if no sleep was needed. Defaults to `false`.
 
 ### Returns
@@ -365,13 +365,13 @@ function unzip(
 
 ### Parameters
 
-- **`zippedFile`**: - The absolute or relative path to the zipped file (`.zip`)
-  to be extracted.
-- **`output`**: - The absolute or relative path to the directory where the
+- **`zippedFile`**: The absolute or relative path to the zipped file (`.zip`) to
+  be extracted.
+- **`output`**: The absolute or relative path to the directory where the
   contents of the zipped file will be extracted. If the directory does not
   exist, it will be created.
-- **`options`**: - Optional settings for the unzip operation.
-- **`options.deleteZippedFile`**: - If `true`, the original zipped file will be
+- **`options`**: Optional settings for the unzip operation.
+- **`options.deleteZippedFile`**: If `true`, the original zipped file will be
   deleted from the filesystem after its contents have been successfully
   extracted. Defaults to `false`.
 
@@ -414,10 +414,10 @@ function zip(files: string | string[], zipFile: string): void;
 
 ### Parameters
 
-- **`files`**: - A string representing the path to a folder, or an array of
+- **`files`**: A string representing the path to a folder, or an array of
   strings representing paths to individual files. These are the items to be
   included in the zip archive.
-- **`zipFile`**: - The absolute or relative path, including the filename and
+- **`zipFile`**: The absolute or relative path, including the filename and
   `.zip` extension, where the created zip archive will be saved (e.g.,
   `"./archives/my-data.zip"`).
 
