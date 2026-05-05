@@ -1,17 +1,17 @@
 {
   "version": "5",
   "specifiers": {
-    "jsr:@nshiab/journalism-format@^1.1.3": "1.1.3",
+    "jsr:@nshiab/journalism-format@^1.1.7": "1.1.7",
     "jsr:@std/assert@*": "1.0.16",
     "jsr:@std/internal@^1.0.12": "1.0.12",
-    "npm:adm-zip@~0.5.16": "0.5.16",
+    "npm:adm-zip@~0.5.17": "0.5.17",
     "npm:d3-dsv@^3.0.1": "3.0.1",
     "npm:date-fns-tz@^3.2.0": "3.2.0_date-fns@4.1.0",
     "npm:iconv-lite@~0.7.2": "0.7.2"
   },
   "jsr": {
-    "@nshiab/journalism-format@1.1.3": {
-      "integrity": "4019271dd851340b9cbd4056ede4e120c0bde5b96a7b928a2095ab7a3b617382",
+    "@nshiab/journalism-format@1.1.7": {
+      "integrity": "e5dd8821f7048acfb55def4c320dc934cf5c2c84f63cd0f72285d97b53c99d2f",
       "dependencies": [
         "npm:d3-dsv",
         "npm:date-fns-tz"
@@ -28,8 +28,8 @@
     }
   },
   "npm": {
-    "adm-zip@0.5.16": {
-      "integrity": "sha512-TGw5yVi4saajsSEgz25grObGHEUaDrniwvA2qwSC060KfqGPdglhvPMA2lPIoxs3PQIItj2iag35fONcQqgUaQ=="
+    "adm-zip@0.5.17": {
+      "integrity": "sha512-+Ut8d9LLqwEvHHJl1+PIHqoyDxFgVN847JTVM3Izi3xHDWPE4UtzzXysMZQs64DMcrJfBeS/uoEP4AD3HQHnQQ=="
     },
     "commander@7.2.0": {
       "integrity": "sha512-QrWXB+ZQSVPmIWIhtEO9H+gwHaMGYiF5ChvoJ+K9ZGHG/sVsa6yiesAD1GC/x46sET00Xlwo1u49RVVVzvcSkw=="
@@ -73,8 +73,8 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@nshiab/journalism-format@^1.1.3",
-      "npm:adm-zip@~0.5.16",
+      "jsr:@nshiab/journalism-format@^1.1.7",
+      "npm:adm-zip@~0.5.17",
       "npm:iconv-lite@~0.7.2"
     ]
   }
