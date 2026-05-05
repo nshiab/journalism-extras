@@ -1,7 +1,7 @@
 /**
  * @module
  *
- * The Journalism library
+ * The Journalism library (extras functions)
  *
  * To install the library with Deno, use:
  * ```bash
@@ -10,12 +10,17 @@
  *
  * To install the library with Node.js, use:
  * ```bash
- * npx jsr add @nshiab/journalism-extras
+ * npm i @nshiab/journalism-extras
  * ```
  *
  * To import a function, use:
  * ```ts
  * import { functionName } from "@nshiab/journalism-extras";
+ * ```
+ *
+ * To import a function from the web entry point, use:
+ * ```ts
+ * import { functionName } from "@nshiab/journalism-extras/web";
  * ```
  */
 
