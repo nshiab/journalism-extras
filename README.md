@@ -5,7 +5,8 @@ functions and classes that do not fit in the other journalism modules. It's part
 of the [journalism library](https://github.com/nshiab/journalism).
 
 The library is available on [JSR](https://jsr.io/@nshiab/journalism-extras) with
-its [documentation](https://jsr.io/@nshiab/journalism-extras/doc).
+its [documentation](https://jsr.io/@nshiab/journalism-extras/doc) and on
+[NPM](https://www.npmjs.com/package/@nshiab/journalism-extras).
 
 The documentation is also available as the markdown file
 [llm.md](https://github.com/nshiab/journalism-extras/blob/main/llm.md), which
@@ -26,21 +27,30 @@ journalist and senior data producer for [CBC News](https://www.cbc.ca/news).
 To install the library, you can use the following commands:
 
 ```bash
-# DENO
-deno install jsr:@nshiab/journalism-extras
+# Deno
+deno add jsr:@nshiab/journalism-extras
 
-# NODE.JS
-npx jsr add @nshiab/journalism-extras
+# Node
+npm i @nshiab/journalism-extras
 
-# BUN
-bunx jsr add @nshiab/journalism-extras
+# Bun
+bun add @nshiab/journalism-extras
 ```
 
-If you run your code in a browser, use the `web` entry point:
+To quickly set up a data project with essential folders, configurations, and
+documentation for AI agents, you can use
+[@nshiab/setup-data-project](https://github.com/nshiab/setup-data-project).
 
-```js
-import { sleep } from "@nshiab/journalism-extras/web";
+```bash
+# Deno
+deno run -A jsr:@nshiab/setup-data-project
+
+# Node
+npx @nshiab/setup-data-project
+
+# Bun
+bunx @nshiab/setup-data-project
 ```
 
 If you wish to contribute, please check the
-[guidelines](https://github.com/nshiab/journalism-extras/blob/main/CONTRIBUTING.md).
+[guidelines](https://github.com/nshiab/journalism-web-scraping/blob/main/CONTRIBUTING.md).
