@@ -59,3 +59,51 @@ Deno.test("should add BOM when encoding to utf-8 with addBOM option", async () =
   // Remove BOM from comparison
   assertEquals(content.replace(/^\uFEFF/, ""), originalContent);
 });
+
+Deno.test("should preserve multibyte characters split across chunks", async () => {
+  const directory = await Deno.makeTempDir();
+  const inputPath = `${directory}/input.txt`;
+  const outputPath = `${directory}/output.txt`;
+
+  try {
+    const content = "éclair 🍰";
+    await Deno.writeTextFile(inputPath, content);
+    await reencode(inputPath, outputPath, "utf-8", "utf-8", {
+      bufferSize: 1 / 1024,
+    });
+
+    assertEquals(await Deno.readTextFile(outputPath), content);
+  } finally {
+    await Deno.remove(directory, { recursive: true });
+  }
+});
+
+Deno.test("should encode native legacy encodings", async () => {
+  const directory = await Deno.makeTempDir();
+  const inputPath = `${directory}/input.txt`;
+
+  const cases = [
+    ["windows-1252", "Québec – €"],
+    ["iso-8859-2", "Zażółć"],
+    ["koi8-r", "Привет"],
+    ["gb2312", "你好"],
+    ["big5", "你好"],
+    ["shift_jis", "こんにちは"],
+    ["euc-jp", "こんにちは"],
+    ["euc-kr", "안녕하세요"],
+    ["gb18030", "你好 😀"],
+  ] as const;
+
+  try {
+    for (const [encoding, content] of cases) {
+      const outputPath = `${directory}/${encoding}.txt`;
+      await Deno.writeTextFile(inputPath, content);
+      await reencode(inputPath, outputPath, "utf-8", encoding);
+
+      const output = await Deno.readFile(outputPath);
+      assertEquals(new TextDecoder(encoding).decode(output), content);
+    }
+  } finally {
+    await Deno.remove(directory, { recursive: true });
+  }
+});

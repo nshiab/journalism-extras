@@ -1,6 +1,7 @@
 import fs from "node:fs";
+import { Transform } from "node:stream";
 import { pipeline } from "node:stream/promises";
-import iconv from "iconv-lite";
+import getTextEncoder from "./encodeText.ts";
 
 /**
  * Converts a file from one character encoding to another. This function is particularly optimized for handling large files.
@@ -46,29 +47,37 @@ export default async function reencode(
   const bufferSize = options.bufferSize ?? 256;
   const addBOM = options.addBOM;
 
-  const readStream = fs.createReadStream(inputFilePath, {
-    highWaterMark: bufferSize * 1024,
-  });
-
-  const writeStream = fs.createWriteStream(outputFilePath);
-
   try {
-    // Add BOM if necessary
+    const decoder = new TextDecoder(fromEncoding);
+    const encoder = getTextEncoder(toEncoding);
+    const readStream = fs.createReadStream(inputFilePath, {
+      highWaterMark: bufferSize * 1024,
+    });
+    const writeStream = fs.createWriteStream(outputFilePath);
+    const transformStream = new Transform({
+      transform(chunk: Uint8Array, _encoding, callback) {
+        try {
+          const text = decoder.decode(chunk, { stream: true });
+          callback(null, encoder.encode(text));
+        } catch (error) {
+          callback(error as Error);
+        }
+      },
+      flush(callback) {
+        try {
+          callback(null, encoder.encode(decoder.decode()));
+        } catch (error) {
+          callback(error as Error);
+        }
+      },
+    });
+
     if (addBOM && toEncoding.toLowerCase() === "utf-8") {
-      writeStream.write("\uFEFF");
+      writeStream.write(Uint8Array.of(0xEF, 0xBB, 0xBF));
     }
 
-    await pipeline(
-      readStream,
-      iconv.decodeStream(fromEncoding),
-      iconv.encodeStream(toEncoding),
-      writeStream,
-    );
+    await pipeline(readStream, transformStream, writeStream);
   } catch (err) {
     throw new Error(`Encoding conversion error: ${(err as Error).message}`);
-  } finally {
-    // Ensuring streams are always closed
-    readStream.close();
-    writeStream.close();
   }
 }
