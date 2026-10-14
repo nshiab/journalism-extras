@@ -45,6 +45,10 @@
 
 ## Phase 3: Validation
 
+- Skip live-network tests when `CI=true` using
+  `test.skipIf(process.env.CI === "true")`. Run them locally by default, and keep
+  offline and mocked tests enabled everywhere.
+
 - Run the relevant tests while developing. Use `npm run fix` to fix formatting
   and automatically fixable lint issues, then resolve remaining errors before
   running `npm run all-tests`. Run all checks before handing off changes and
