@@ -4,6 +4,3 @@ site/
 *.tgz
 .DS_Store
 .env
-test/output/
-npm/
-docs.json
