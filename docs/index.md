@@ -28,10 +28,9 @@ npm install @nshiab/journalism-extras
 ```
 
 ```ts
-import { getId } from "@nshiab/journalism-extras";
+import { createDirectory } from "@nshiab/journalism-extras";
 
-const id = getId(10);
-console.log(id); // e.g., "a1B2c3D4e5"
+createDirectory("./output/data");
 ```
 
 For browser projects, use the `/web` entry point:
