@@ -1,65 +1,68 @@
-import { existsSync } from "node:fs";
-import { assertEquals } from "jsr:@std/assert";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { existsSync, mkdtempSync, rmSync } from "node:fs";
+import { afterAll, assert, test } from "vite-plus/test";
 import createDirectory from "../../src/extras/createDirectory.ts";
 import removeDirectory from "../../src/extras/removeDirectory.ts";
 
-const outputPath = "./test/output/folderToRemove";
-const outputPathRecursive =
-  "./test/output/folderToRemove/subfolder/subsubfolder";
-const outputPathHidden =
-  "./test/output/folderToRemove/differentSubfolder/.hiddenFolder/";
+const directory = mkdtempSync(join(tmpdir(), "journalism-extras-"));
+afterAll(() => rmSync(directory, { recursive: true, force: true }));
 
-Deno.test("should remove a folder that exists", () => {
+const outputPath = `${directory}/folderToRemove`;
+const outputPathRecursive = `${directory}/folderToRemove/subfolder/subsubfolder`;
+const outputPathHidden = `${directory}/folderToRemove/differentSubfolder/.hiddenFolder/`;
+
+test("should remove a folder that exists", () => {
   // First create the folder
   createDirectory(outputPath);
-  assertEquals(existsSync(outputPath), true);
+  assert.deepStrictEqual(existsSync(outputPath), true);
 
   // Then remove it
   removeDirectory(outputPath);
-  assertEquals(existsSync(outputPath), false);
+  assert.deepStrictEqual(existsSync(outputPath), false);
 });
 
-Deno.test("should not throw an error if the folder doesn't exist", () => {
+test("should not throw an error if the folder doesn't exist", () => {
   // Ensure folder doesn't exist first
   removeDirectory(outputPath);
-  assertEquals(existsSync(outputPath), false);
+  assert.deepStrictEqual(existsSync(outputPath), false);
 
   // Try to remove again - should not throw
   removeDirectory(outputPath);
-  assertEquals(existsSync(outputPath), false);
+  assert.deepStrictEqual(existsSync(outputPath), false);
 });
 
-Deno.test("should not throw an error if the path has / at the end", () => {
+test("should not throw an error if the path has / at the end", () => {
   // Create and then remove with trailing slash
   createDirectory(outputPath);
   removeDirectory(outputPath + "/");
-  assertEquals(existsSync(outputPath), false);
+  assert.deepStrictEqual(existsSync(outputPath), false);
 });
 
-Deno.test("should remove folders recursively", () => {
+test("should remove folders recursively", () => {
   // Create nested folders
   createDirectory(outputPathRecursive);
-  assertEquals(existsSync(outputPathRecursive), true);
+  assert.deepStrictEqual(existsSync(outputPathRecursive), true);
 
   // Remove from the top level
   removeDirectory(outputPath);
-  assertEquals(existsSync(outputPath), false);
-  assertEquals(existsSync(outputPathRecursive), false);
+  assert.deepStrictEqual(existsSync(outputPath), false);
+  assert.deepStrictEqual(existsSync(outputPathRecursive), false);
 });
 
-Deno.test("should remove folders recursively even if the path contains hidden folders", () => {
+test("should remove folders recursively even if the path contains hidden folders", () => {
   // Create hidden folder structure
   createDirectory(outputPathHidden);
-  assertEquals(existsSync(outputPathHidden), true);
+  assert.deepStrictEqual(existsSync(outputPathHidden), true);
 
   // Remove it
   removeDirectory(outputPath);
-  assertEquals(existsSync(outputPathHidden), false);
-  assertEquals(existsSync(outputPath), false);
+  assert.deepStrictEqual(existsSync(outputPathHidden), false);
+  assert.deepStrictEqual(existsSync(outputPath), false);
 });
 
-Deno.test("should not throw an error when trying to remove a non-existent file", () => {
+test("should not throw an error when trying to remove a non-existent file", () => {
   // This should not throw an error due to force: true
-  removeDirectory("nonexistent.csv");
+  removeDirectory(`${directory}/nonexistent.csv`);
   // No assertion needed - just ensuring no error is thrown
 });

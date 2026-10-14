@@ -1,10 +1,10 @@
-import { assertEquals } from "jsr:@std/assert";
+import { assert, test } from "vite-plus/test";
 import prettyDuration from "../../src/extras/prettyDuration.ts";
 
-Deno.test("should preserve prettyDuration formatting", () => {
-  assertEquals(prettyDuration(0, { end: 999 }), "999 ms");
-  assertEquals(prettyDuration(0, { end: 61_001 }), "1 min, 1 sec, 1 ms");
-  assertEquals(
+test("should preserve prettyDuration formatting", () => {
+  assert.deepStrictEqual(prettyDuration(0, { end: 999 }), "999 ms");
+  assert.deepStrictEqual(prettyDuration(0, { end: 61_001 }), "1 min, 1 sec, 1 ms");
+  assert.deepStrictEqual(
     prettyDuration(0, {
       end: 3_661_001,
       prefix: "Elapsed: ",

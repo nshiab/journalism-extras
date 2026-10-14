@@ -6,10 +6,6 @@ import createDirectory from "./createDirectory.ts";
  *
  * You can specify individual files to be added to the archive, or provide a path to a directory, in which case all its contents will be compressed. The function automatically creates the necessary directory structure for the output zip file if it doesn't already exist.
  *
- * @param files - A string representing the path to a folder, or an array of strings representing paths to individual files. These are the items to be included in the zip archive.
- * @param zipFile - The absolute or relative path, including the filename and `.zip` extension, where the created zip archive will be saved (e.g., `"./archives/my-data.zip"`).
- * @returns `void`
- *
  * @example
  * ```ts
  * // Compressing multiple files into a zip archive.
@@ -20,7 +16,10 @@ import createDirectory from "./createDirectory.ts";
  * zip('path/to/folder', 'folder-archive.zip');
  * console.log("Folder zipped successfully.");
  * ```
- * @category Other
+ * @param files - A string representing the path to a folder, or an array of strings representing paths to individual files. These are the items to be included in the zip archive.
+ * @param zipFile - The absolute or relative path, including the filename and `.zip` extension, where the created zip archive will be saved (e.g., `"./archives/my-data.zip"`).
+ * @returns `void`
+ * @category Extras
  */
 export default function zip(files: string | string[], zipFile: string): void {
   const z = new AdmZip();

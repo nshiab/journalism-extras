@@ -5,9 +5,6 @@ import { rmSync } from "node:fs";
  *
  * **Caution**: Use this function with care, as it permanently deletes files and directories without sending them to the recycle bin or trash. Ensure that the `path` provided is correct to avoid accidental data loss.
  *
- * @param path - The absolute or relative path to the directory to be removed.
- * @returns `void`
- *
  * @example
  * ```ts
  * // Removes the directory and all its contents recursively.
@@ -20,7 +17,9 @@ import { rmSync } from "node:fs";
  * removeDirectory("./non-existent-folder");
  * console.log("Attempted to remove non-existent folder (no error thrown).");
  * ```
- * @category Other
+ * @param path - The absolute or relative path to the directory to be removed.
+ * @returns `void`
+ * @category Extras
  */
 
 export default function removeDirectory(path: string): void {

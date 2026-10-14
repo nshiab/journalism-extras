@@ -8,15 +8,6 @@ import getTextEncoder from "./encodeText.ts";
  *
  * Character encoding is crucial for ensuring that text data is displayed correctly across different systems and applications. This function helps resolve issues related to garbled text when files are created or read with different encoding standards.
  *
- * @param inputFilePath - The absolute path to the input file that needs to be re-encoded.
- * @param outputFilePath - The absolute path where the converted file will be saved.
- * @param fromEncoding - The character encoding of the input file (e.g., 'windows-1252', 'latin1', 'ISO-8859-1').
- * @param toEncoding - The desired character encoding for the output file (e.g., 'utf-8').
- * @param options - Optional configuration settings for the re-encoding process.
- *   @param options.bufferSize - The size of the read buffer in kilobytes (KB). A larger buffer can improve performance for very large files but consumes more memory. Defaults to `256` KB.
- *   @param options.addBOM - If `true`, a Byte Order Mark (BOM) will be added to the output file if the `toEncoding` is UTF-8. A BOM can help some applications correctly identify the UTF-8 encoding. Defaults to `false`.
- * @returns A Promise that resolves when the file has been successfully re-encoded and saved.
- *
  * @example
  * ```ts
  * // Convert a CSV file from Windows-1252 to UTF-8 encoding.
@@ -32,7 +23,15 @@ import getTextEncoder from "./encodeText.ts";
  * });
  * console.log("Large file re-encoded with custom buffer and BOM.");
  * ```
- * @category Formatting
+ * @param inputFilePath - The absolute path to the input file that needs to be re-encoded.
+ * @param outputFilePath - The absolute path where the converted file will be saved.
+ * @param fromEncoding - The character encoding of the input file (e.g., 'windows-1252', 'latin1', 'ISO-8859-1').
+ * @param toEncoding - The desired character encoding for the output file (e.g., 'utf-8').
+ * @param options - Optional configuration settings for the re-encoding process.
+ * @param options.bufferSize - The size of the read buffer in kilobytes (KB). A larger buffer can improve performance for very large files but consumes more memory. Defaults to `256` KB.
+ * @param options.addBOM - If `true`, a Byte Order Mark (BOM) will be added to the output file if the `toEncoding` is UTF-8. A BOM can help some applications correctly identify the UTF-8 encoding. Defaults to `false`.
+ * @returns A Promise that resolves when the file has been successfully re-encoded and saved.
+ * @category Extras
  */
 export default async function reencode(
   inputFilePath: string,
@@ -60,24 +59,26 @@ export default async function reencode(
           const text = decoder.decode(chunk, { stream: true });
           callback(null, encoder.encode(text));
         } catch (error) {
-          callback(error as Error);
+          callback(error instanceof Error ? error : new Error(String(error)));
         }
       },
       flush(callback) {
         try {
           callback(null, encoder.encode(decoder.decode()));
         } catch (error) {
-          callback(error as Error);
+          callback(error instanceof Error ? error : new Error(String(error)));
         }
       },
     });
 
     if (addBOM && toEncoding.toLowerCase() === "utf-8") {
-      writeStream.write(Uint8Array.of(0xEF, 0xBB, 0xBF));
+      writeStream.write(Uint8Array.of(0xef, 0xbb, 0xbf));
     }
 
     await pipeline(readStream, transformStream, writeStream);
   } catch (err) {
-    throw new Error(`Encoding conversion error: ${(err as Error).message}`);
+    throw new Error(
+      `Encoding conversion error: ${err instanceof Error ? err.message : String(err)}`,
+    );
   }
 }

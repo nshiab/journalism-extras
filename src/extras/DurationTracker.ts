@@ -5,11 +5,6 @@ import prettyDuration from "./prettyDuration.ts";
  *
  * The tracker provides methods to mark the start of an iteration and to log the estimated remaining time. The log message can be customized with a prefix and suffix.
  *
- * @param length The total number of iterations or items to process. This is used to calculate the remaining items.
- * @param options Optional settings for the tracker.
- * @param options.prefix A string to prepend to the logged remaining time message. Defaults to an empty string.
- * @param options.suffix A string to append to the logged remaining time message. Defaults to an empty string.
- *
  * @example
  * ```ts
  * // Basic usage: Tracking a loop with 100 iterations.
@@ -27,7 +22,11 @@ import prettyDuration from "./prettyDuration.ts";
  * }
  * console.log("Processing complete!");
  * ```
- * @category Other
+ * @param length The total number of iterations or items to process. This is used to calculate the remaining items.
+ * @param options Optional settings for the tracker.
+ * @param options.prefix A string to prepend to the logged remaining time message. Defaults to an empty string.
+ * @param options.suffix A string to append to the logged remaining time message. Defaults to an empty string.
+ * @category Extras
  */
 export default class DurationTracker {
   /**  An array to store the durations of each iteration. */
@@ -48,10 +47,7 @@ export default class DurationTracker {
    * @param length The total number of iterations.
    * @param options Optional settings for the tracker.
    */
-  constructor(
-    length: number,
-    options: { prefix?: string; suffix?: string } = {},
-  ) {
+  constructor(length: number, options: { prefix?: string; suffix?: string } = {}) {
     this.prefix = options.prefix || "";
     this.suffix = options.suffix || "";
     this.iterationDurations = [];
@@ -98,15 +94,9 @@ export default class DurationTracker {
     this.currentEnd = Date.now();
     this.iterationDurations.push(this.currentEnd - this.currentStart);
     const averageDuration = Math.round(
-      this.iterationDurations.reduce((a, b) => a + b, 0) /
-        this.iterationDurations.length,
+      this.iterationDurations.reduce((a, b) => a + b, 0) / this.iterationDurations.length,
     );
-    const remainingTime = averageDuration *
-      (this.length - this.iterationDurations.length);
-    console.log(
-      `${this.prefix}${
-        prettyDuration(0, { end: remainingTime })
-      }${this.suffix}`,
-    );
+    const remainingTime = averageDuration * (this.length - this.iterationDurations.length);
+    console.log(`${this.prefix}${prettyDuration(0, { end: remainingTime })}${this.suffix}`);
   }
 }
