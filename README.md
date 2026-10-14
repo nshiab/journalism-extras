@@ -30,8 +30,7 @@ const id = getId(10);
 console.log(id); // e.g., "a1B2c3D4e5"
 ```
 
-For browser projects, the `/web` entry point exports `getId`, `sleep`, and
-`DurationTracker`:
+For browser projects, use the `/web` entry point:
 
 ```ts
 import { getId } from "@nshiab/journalism-extras/web";
