@@ -1,8 +1,8 @@
-import { assertEquals } from "jsr:@std/assert";
+import { assert, test } from "vite-plus/test";
 import DurationTracker from "../../src/extras/DurationTracker.ts";
 import sleep from "../../src/extras/sleep.ts";
 
-Deno.test("should log the remaining time", async () => {
+test("should log the remaining time", async () => {
   const data = [0, 1, 2, 3, 4];
 
   const tracker = new DurationTracker(data.length);
@@ -15,10 +15,10 @@ Deno.test("should log the remaining time", async () => {
   }
 
   // How to assert?
-  assertEquals(true, true);
+  assert.deepStrictEqual(true, true);
 });
 
-Deno.test("should log the remaining time with a prefix and suffix", async () => {
+test("should log the remaining time with a prefix and suffix", async () => {
   const data = [0, 1, 2, 3, 4];
 
   const tracker = new DurationTracker(data.length, {
@@ -34,5 +34,5 @@ Deno.test("should log the remaining time with a prefix and suffix", async () => 
   }
 
   // How to assert?
-  assertEquals(true, true);
+  assert.deepStrictEqual(true, true);
 });

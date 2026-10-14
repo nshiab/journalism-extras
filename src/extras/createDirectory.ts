@@ -5,9 +5,6 @@ import { existsSync, mkdirSync } from "node:fs";
  *
  * The function will not throw an error if the directory already exists. It can also accept a full file path, in which case it will create all the parent directories, ignoring the filename portion.
  *
- * @param path The path of the directory to create. This can be a path to a directory or a full path to a file.
- *
- * @returns {void}
  * @example
  * ```ts
  * // Create a simple directory
@@ -19,7 +16,10 @@ import { existsSync, mkdirSync } from "node:fs";
  * // Create a directory from a file path
  * createDirectory("./output/data/my-file.json");
  * // This will create the './output/data' directory structure. The 'my-file.json' part is ignored.
- * ``` @category Other
+ * ```
+ * @param path The path of the directory to create. This can be a path to a directory or a full path to a file.
+ * @returns {void}
+ * @category Extras
  */
 
 export default function createDirectory(path: string): void {

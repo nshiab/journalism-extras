@@ -1,27 +1,18 @@
 /**
+ * Filesystem, encoding, timing, and ID utilities for journalism projects.
+ *
+ * Install with `npm install @nshiab/journalism-extras`.
+ * Requires Node.js 24.21.0 or later and ES modules.
+ *
+ * @example
+ * ```ts
+ * import { getId } from "@nshiab/journalism-extras";
+ *
+ * const id = getId(10);
+ * console.log(id); // e.g., "a1B2c3D4e5"
+ * ```
+ *
  * @module
- *
- * The Journalism library (extras functions)
- *
- * To install the library with Deno, use:
- * ```bash
- * deno add jsr:@nshiab/journalism-extras
- * ```
- *
- * To install the library with Node.js, use:
- * ```bash
- * npm i @nshiab/journalism-extras
- * ```
- *
- * To import a function, use:
- * ```ts
- * import { functionName } from "@nshiab/journalism-extras";
- * ```
- *
- * To import a function from the web entry point, use:
- * ```ts
- * import { functionName } from "@nshiab/journalism-extras/web";
- * ```
  */
 
 import unzip from "./extras/unzip.ts";
@@ -33,13 +24,4 @@ import sleep from "./extras/sleep.ts";
 import DurationTracker from "./extras/DurationTracker.ts";
 import reencode from "./extras/reencode.ts";
 
-export {
-  createDirectory,
-  DurationTracker,
-  getId,
-  reencode,
-  removeDirectory,
-  sleep,
-  unzip,
-  zip,
-};
+export { createDirectory, DurationTracker, getId, reencode, removeDirectory, sleep, unzip, zip };

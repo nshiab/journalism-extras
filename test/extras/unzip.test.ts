@@ -1,22 +1,34 @@
-import { assertEquals } from "jsr:@std/assert";
+import { afterAll, assert, test } from "vite-plus/test";
+import { copyFileSync, existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import AdmZip from "adm-zip";
 import unzip from "../../src/extras/unzip.ts";
-import { copyFileSync, existsSync, mkdirSync } from "node:fs";
 
-const outputPath = "./test/output/";
-if (!existsSync(outputPath)) {
-  mkdirSync(outputPath);
+const directory = mkdtempSync(join(tmpdir(), "journalism-extras-"));
+afterAll(() => rmSync(directory, { recursive: true, force: true }));
+
+function assertExtracted(output: string) {
+  const archive = new AdmZip("test/data/test.zip");
+  for (const entry of archive.getEntries()) {
+    const path = join(output, entry.entryName);
+    assert.isTrue(existsSync(path));
+    if (!entry.isDirectory) assert.deepStrictEqual(readFileSync(path), entry.getData());
+  }
 }
 
-Deno.test("should unzip and put files in a folder", () => {
-  unzip("test/data/test.zip", "test/output");
-  // How to assert?
-  assertEquals(true, true);
+test("should unzip and put files in a folder", () => {
+  const output = `${directory}/extracted`;
+  unzip("test/data/test.zip", output);
+  assertExtracted(output);
+  assert.isTrue(existsSync("test/data/test.zip"));
 });
-Deno.test("should unzip, put files in a folder and remove original file", () => {
-  copyFileSync("test/data/test.zip", "test/data/testCopy.zip");
-  unzip("test/data/testCopy.zip", "test/output", {
-    deleteZippedFile: true,
-  });
-  // How to assert?
-  assertEquals(true, true);
+
+test("should unzip, put files in a folder and remove original file", () => {
+  const copy = `${directory}/testCopy.zip`;
+  const output = `${directory}/extracted-and-deleted`;
+  copyFileSync("test/data/test.zip", copy);
+  unzip(copy, output, { deleteZippedFile: true });
+  assertExtracted(output);
+  assert.isFalse(existsSync(copy));
 });

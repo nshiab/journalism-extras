@@ -1,43 +1,48 @@
-import { existsSync } from "node:fs";
-import { assertEquals } from "jsr:@std/assert";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { existsSync, mkdtempSync, rmSync } from "node:fs";
+import { afterAll, assert, test } from "vite-plus/test";
 import createDirectory from "../../src/extras/createDirectory.ts";
 
-const outputPath = "./test/output/folder";
-const outputPathRecursive = "./test/output/folder/subfolder/subsubfolder";
-const outputPathFile = "./test/output/folder/differentSubfolder/text.csv";
-const outputPathWithoutFile = "./test/output/folder/differentSubfolder/";
-const outputPathHidden =
-  "./test/output/folder/differentSubfolder/.hiddenFolder/";
+const directory = mkdtempSync(join(tmpdir(), "journalism-extras-"));
+afterAll(() => rmSync(directory, { recursive: true, force: true }));
 
-Deno.test("should create a folder that doesn't exist", () => {
+const outputPath = `${directory}/folder`;
+const outputPathRecursive = `${directory}/folder/subfolder/subsubfolder`;
+const outputPathFile = `${directory}/folder/differentSubfolder/text.csv`;
+const outputPathWithoutFile = `${directory}/folder/differentSubfolder/`;
+const outputPathHidden = `${directory}/folder/differentSubfolder/.hiddenFolder/`;
+
+test("should create a folder that doesn't exist", () => {
   createDirectory(outputPath);
-  assertEquals(existsSync(outputPath), true);
+  assert.deepStrictEqual(existsSync(outputPath), true);
 });
-Deno.test("should not throw an error if the folder already exists", () => {
+test("should not throw an error if the folder already exists", () => {
   createDirectory(outputPath);
-  assertEquals(existsSync(outputPath), true);
+  assert.deepStrictEqual(existsSync(outputPath), true);
 });
-Deno.test("should not throw an error if the path has / at the end", () => {
+test("should not throw an error if the path has / at the end", () => {
   createDirectory(outputPath + "/");
-  assertEquals(existsSync(outputPath), true);
+  assert.deepStrictEqual(existsSync(outputPath), true);
 });
-Deno.test("should create folders recursively", () => {
+test("should create folders recursively", () => {
   createDirectory(outputPathRecursive);
-  assertEquals(existsSync(outputPathRecursive), true);
+  assert.deepStrictEqual(existsSync(outputPathRecursive), true);
 });
-Deno.test("should create folders recursively even if the path directs to a file that doesn't exist", () => {
+test("should create folders recursively even if the path directs to a file that doesn't exist", () => {
   createDirectory(outputPathFile);
   const result = {
     file: existsSync(outputPathFile),
     folder: existsSync(outputPathWithoutFile),
   };
-  assertEquals(result, { file: false, folder: true });
+  assert.deepStrictEqual(result, { file: false, folder: true });
 });
-Deno.test("should create folders recursively even if the path contains hidden folders", () => {
+test("should create folders recursively even if the path contains hidden folders", () => {
   createDirectory(outputPathHidden);
-  assertEquals(existsSync(outputPathHidden), true);
+  assert.deepStrictEqual(existsSync(outputPathHidden), true);
 });
-Deno.test("should do nothing if the path is just a file folders", () => {
-  createDirectory("data.csv");
-  assertEquals(existsSync(outputPathHidden), true);
+test("should do nothing if the path is just a file folders", () => {
+  const filePath = `${directory}/data.csv`;
+  createDirectory(filePath);
+  assert.deepStrictEqual(existsSync(filePath), false);
 });

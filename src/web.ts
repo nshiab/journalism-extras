@@ -1,22 +1,17 @@
 /**
- * @module
+ * Browser-compatible timing and ID utilities for journalism projects.
  *
- * The Journalism library (extras functions) - Web entry point
+ * Install with `npm install @nshiab/journalism-extras`.
  *
- * To install the library with Deno, use:
- * ```bash
- * deno add jsr:@nshiab/journalism-extras
- * ```
- *
- * To install the library with Node.js, use:
- * ```bash
- * npm i @nshiab/journalism-extras
- * ```
- *
- * To import a function from the web entry point, use:
+ * @example
  * ```ts
- * import { functionName } from "@nshiab/journalism-extras/web";
+ * import { getId } from "@nshiab/journalism-extras/web";
+ *
+ * const id = getId(10);
+ * console.log(id); // e.g., "a1B2c3D4e5"
  * ```
+ *
+ * @module
  */
 
 import getId from "./extras/getId.ts";

@@ -5,12 +5,6 @@ import prettyDuration from "./prettyDuration.ts";
  *
  * It can also adjust the pause duration by subtracting any time already elapsed since a given start point, ensuring more precise delays. This is particularly useful for respecting API rate limits, ensuring that the total time spent between requests meets a minimum threshold without over-waiting if the preceding operations took some time. If the elapsed time is greater than or equal to `ms`, the function will resolve immediately without pausing.
  *
- * @param ms - The number of milliseconds to pause execution for. This is the target duration of the sleep.
- * @param options - Optional parameters to customize the sleep behavior.
- *   @param options.start - A `Date` object representing a starting timestamp. If provided, the function will subtract the time elapsed since this `start` time from the `ms` duration. This is particularly useful for respecting API rate limits.
- *   @param options.log - If `true`, the function will log messages to the console indicating the sleep duration or if no sleep was needed. Defaults to `false`.
- * @returns A Promise that resolves after the specified (or adjusted) duration has passed.
- *
  * @example
  * ```ts
  * // Pause execution for 1 second.
@@ -42,7 +36,12 @@ import prettyDuration from "./prettyDuration.ts";
  * await sleep(2000, { log: true });
  * // Expected console output: "Sleeping for 2 sec, 0 ms..." (or similar)
  * ```
- * @category Other
+ * @param ms - The number of milliseconds to pause execution for. This is the target duration of the sleep.
+ * @param options - Optional parameters to customize the sleep behavior.
+ * @param options.start - A `Date` object representing a starting timestamp. If provided, the function will subtract the time elapsed since this `start` time from the `ms` duration. This is particularly useful for respecting API rate limits.
+ * @param options.log - If `true`, the function will log messages to the console indicating the sleep duration or if no sleep was needed. Defaults to `false`.
+ * @returns A Promise that resolves after the specified (or adjusted) duration has passed.
+ * @category Extras
  */
 export default function sleep(
   ms: number,
@@ -55,18 +54,12 @@ export default function sleep(
       const remaining = ms - duration;
       if (remaining > 0) {
         if (options.log) {
-          console.log(
-            `\nSleeping for ${prettyDuration(0, { end: remaining })}...`,
-          );
+          console.log(`\nSleeping for ${prettyDuration(0, { end: remaining })}...`);
         }
         return setTimeout(resolve, remaining);
       } else {
         if (options.log) {
-          console.log(
-            `\nNo need to sleep, already took ${
-              prettyDuration(0, { end: duration })
-            }.`,
-          );
+          console.log(`\nNo need to sleep, already took ${prettyDuration(0, { end: duration })}.`);
         }
         return resolve();
       }

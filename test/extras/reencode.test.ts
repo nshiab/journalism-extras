@@ -1,85 +1,92 @@
-import { assertEquals, assertExists } from "jsr:@std/assert";
+import { mkdtemp, readFile, rm, stat, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { afterAll, assert, test } from "vite-plus/test";
 import reencode from "../../src/extras/reencode.ts";
 
-Deno.test("should reencode from utf-8 to windows-1252", async () => {
+const outputDirectory = await mkdtemp(join(tmpdir(), "journalism-extras-"));
+afterAll(() => rm(outputDirectory, { recursive: true, force: true }));
+
+test("should reencode from utf-8 to windows-1252", async () => {
   const inputPath = "test/data/data.csv";
-  const outputPath = "test/output/data_windows-1252.csv";
+  const outputPath = `${outputDirectory}/data_windows-1252.csv`;
 
   await reencode(inputPath, outputPath, "utf-8", "windows-1252");
 
   // Verify output file was created
-  const fileInfo = await Deno.stat(outputPath);
-  assertExists(fileInfo);
+  const fileInfo = await stat(outputPath);
+  assert.isDefined(fileInfo);
 
   // Read and verify content
-  const originalContent = await Deno.readTextFile(inputPath);
-  const outputBytes = await Deno.readFile(outputPath);
+  const originalContent = await readFile(inputPath, "utf8");
+  const outputBytes = await readFile(outputPath);
   const decoder = new TextDecoder("windows-1252");
   const decodedContent = decoder.decode(outputBytes);
 
-  assertEquals(decodedContent, originalContent);
+  assert.deepStrictEqual(decodedContent, originalContent);
 });
 
-Deno.test("should reencode from windows-1252 to utf-8", async () => {
-  const inputPath = "test/output/data_windows-1252.csv";
-  const outputPath = "test/output/data_utf-8.csv";
+test("should reencode from windows-1252 to utf-8", async () => {
+  const inputPath = `${outputDirectory}/data_windows-1252.csv`;
+  const outputPath = `${outputDirectory}/data_utf-8.csv`;
 
+  await reencode("test/data/data.csv", inputPath, "utf-8", "windows-1252");
   await reencode(inputPath, outputPath, "windows-1252", "utf-8");
 
   // Verify output file was created
-  const fileInfo = await Deno.stat(outputPath);
-  assertExists(fileInfo);
+  const fileInfo = await stat(outputPath);
+  assert.isDefined(fileInfo);
 
   // Read and verify content matches original
-  const originalContent = await Deno.readTextFile("test/data/data.csv");
-  const outputContent = await Deno.readTextFile(outputPath);
+  const originalContent = await readFile("test/data/data.csv", "utf8");
+  const outputContent = await readFile(outputPath, "utf8");
 
-  assertEquals(outputContent, originalContent);
+  assert.deepStrictEqual(outputContent, originalContent);
 });
 
-Deno.test("should add BOM when encoding to utf-8 with addBOM option", async () => {
+test("should add BOM when encoding to utf-8 with addBOM option", async () => {
   const inputPath = "test/data/data.csv";
-  const outputPath = "test/output/data_with_bom.csv";
+  const outputPath = `${outputDirectory}/data_with_bom.csv`;
 
   await reencode(inputPath, outputPath, "utf-8", "utf-8", { addBOM: true });
 
   // Read raw bytes and check for BOM
-  const outputBytes = await Deno.readFile(outputPath);
-  const bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
+  const outputBytes = await readFile(outputPath);
+  const bom = new Uint8Array([0xef, 0xbb, 0xbf]);
 
-  assertEquals(outputBytes[0], bom[0]);
-  assertEquals(outputBytes[1], bom[1]);
-  assertEquals(outputBytes[2], bom[2]);
+  assert.deepStrictEqual(outputBytes[0], bom[0]);
+  assert.deepStrictEqual(outputBytes[1], bom[1]);
+  assert.deepStrictEqual(outputBytes[2], bom[2]);
 
   // Verify content is still correct (excluding BOM)
   const decoder = new TextDecoder("utf-8");
   const content = decoder.decode(outputBytes);
-  const originalContent = await Deno.readTextFile(inputPath);
+  const originalContent = await readFile(inputPath, "utf8");
 
   // Remove BOM from comparison
-  assertEquals(content.replace(/^\uFEFF/, ""), originalContent);
+  assert.deepStrictEqual(content.replace(/^\uFEFF/, ""), originalContent);
 });
 
-Deno.test("should preserve multibyte characters split across chunks", async () => {
-  const directory = await Deno.makeTempDir();
+test("should preserve multibyte characters split across chunks", async () => {
+  const directory = await mkdtemp(join(tmpdir(), "journalism-extras-"));
   const inputPath = `${directory}/input.txt`;
   const outputPath = `${directory}/output.txt`;
 
   try {
     const content = "éclair 🍰";
-    await Deno.writeTextFile(inputPath, content);
+    await writeFile(inputPath, content);
     await reencode(inputPath, outputPath, "utf-8", "utf-8", {
       bufferSize: 1 / 1024,
     });
 
-    assertEquals(await Deno.readTextFile(outputPath), content);
+    assert.deepStrictEqual(await readFile(outputPath, "utf8"), content);
   } finally {
-    await Deno.remove(directory, { recursive: true });
+    await rm(directory, { recursive: true });
   }
 });
 
-Deno.test("should encode native legacy encodings", async () => {
-  const directory = await Deno.makeTempDir();
+test("should encode native legacy encodings", async () => {
+  const directory = await mkdtemp(join(tmpdir(), "journalism-extras-"));
   const inputPath = `${directory}/input.txt`;
 
   const cases = [
@@ -97,13 +104,13 @@ Deno.test("should encode native legacy encodings", async () => {
   try {
     for (const [encoding, content] of cases) {
       const outputPath = `${directory}/${encoding}.txt`;
-      await Deno.writeTextFile(inputPath, content);
+      await writeFile(inputPath, content);
       await reencode(inputPath, outputPath, "utf-8", encoding);
 
-      const output = await Deno.readFile(outputPath);
-      assertEquals(new TextDecoder(encoding).decode(output), content);
+      const output = await readFile(outputPath);
+      assert.deepStrictEqual(new TextDecoder(encoding).decode(output), content);
     }
   } finally {
-    await Deno.remove(directory, { recursive: true });
+    await rm(directory, { recursive: true });
   }
 });

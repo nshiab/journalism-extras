@@ -1,18 +1,54 @@
-import { assertEquals } from "jsr:@std/assert";
+import { afterAll, assert, test } from "vite-plus/test";
+import AdmZip from "adm-zip";
+import { mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import zip from "../../src/extras/zip.ts";
 
-Deno.test("should zip multiple files together", () => {
-  zip(
-    ["test/data/data.csv", "test/data/data.json"],
-    "test/output/data.zip",
+const directory = mkdtempSync(join(tmpdir(), "journalism-extras-"));
+afterAll(() => rmSync(directory, { recursive: true, force: true }));
+
+test("should zip multiple files together", () => {
+  const output = `${directory}/data.zip`;
+  zip(["test/data/data.csv", "test/data/data.json"], output);
+  const archive = new AdmZip(output);
+  assert.deepStrictEqual(
+    archive
+      .getEntries()
+      .map((entry) => entry.entryName)
+      .sort(),
+    ["data.csv", "data.json"],
   );
-  assertEquals(true, true);
+  for (const entry of archive.getEntries()) {
+    assert.deepStrictEqual(entry.getData(), readFileSync(`test/data/${entry.entryName}`));
+  }
 });
-Deno.test("should zip an entire folder together", () => {
-  zip("test/data/", "test/output/dataFolder.zip");
-  assertEquals(true, true);
+
+test("should zip an entire folder together", () => {
+  const output = `${directory}/dataFolder.zip`;
+  zip("test/data/", output);
+  const archive = new AdmZip(output);
+  assert.deepStrictEqual(
+    archive
+      .getEntries()
+      .map((entry) => entry.entryName)
+      .sort(),
+    ["data.csv", "data.json", "test.zip"],
+  );
+  for (const entry of archive.getEntries()) {
+    assert.deepStrictEqual(entry.getData(), readFileSync(`test/data/${entry.entryName}`));
+  }
 });
-Deno.test("should zip an entire folder together and create the path if it doesn't exist", () => {
-  zip("test/data/", "test/output/zipFolder/dataFolder.zip");
-  assertEquals(true, true);
+
+test("should zip an entire folder together and create the path if it doesn't exist", () => {
+  const output = `${directory}/zipFolder/dataFolder.zip`;
+  zip("test/data/", output);
+  const archive = new AdmZip(output);
+  assert.deepStrictEqual(
+    archive
+      .getEntries()
+      .map((entry) => entry.entryName)
+      .sort(),
+    ["data.csv", "data.json", "test.zip"],
+  );
 });
