@@ -1,15 +1,15 @@
-# Journalism Extras v1.0.12
+# Journalism Extras v1.0.13
 
 > Useful TypeScript functions for journalism projects. This library holds any functions and classes that do not fit in the other journalism modules.
 
-- [README](https://raw.githubusercontent.com/nshiab/journalism-extras/v1.0.12/README.md): Installation, examples and usage.
+- [README](https://raw.githubusercontent.com/nshiab/journalism-extras/v1.0.13/README.md): Installation, examples and usage.
 
 ## API
-- [DurationTracker](https://raw.githubusercontent.com/nshiab/journalism-extras/v1.0.12/docs/classes/DurationTracker.md): DurationTracker class
-- [createDirectory](https://raw.githubusercontent.com/nshiab/journalism-extras/v1.0.12/docs/functions/createDirectory.md): createDirectory function
-- [getId](https://raw.githubusercontent.com/nshiab/journalism-extras/v1.0.12/docs/functions/getId.md): getId function
-- [reencode](https://raw.githubusercontent.com/nshiab/journalism-extras/v1.0.12/docs/functions/reencode.md): reencode function
-- [removeDirectory](https://raw.githubusercontent.com/nshiab/journalism-extras/v1.0.12/docs/functions/removeDirectory.md): removeDirectory function
-- [sleep](https://raw.githubusercontent.com/nshiab/journalism-extras/v1.0.12/docs/functions/sleep.md): sleep function
-- [unzip](https://raw.githubusercontent.com/nshiab/journalism-extras/v1.0.12/docs/functions/unzip.md): unzip function
-- [zip](https://raw.githubusercontent.com/nshiab/journalism-extras/v1.0.12/docs/functions/zip.md): zip function
+- [DurationTracker](https://raw.githubusercontent.com/nshiab/journalism-extras/v1.0.13/docs/classes/DurationTracker.md): DurationTracker class
+- [createDirectory](https://raw.githubusercontent.com/nshiab/journalism-extras/v1.0.13/docs/functions/createDirectory.md): createDirectory function
+- [getId](https://raw.githubusercontent.com/nshiab/journalism-extras/v1.0.13/docs/functions/getId.md): getId function
+- [reencode](https://raw.githubusercontent.com/nshiab/journalism-extras/v1.0.13/docs/functions/reencode.md): reencode function
+- [removeDirectory](https://raw.githubusercontent.com/nshiab/journalism-extras/v1.0.13/docs/functions/removeDirectory.md): removeDirectory function
+- [sleep](https://raw.githubusercontent.com/nshiab/journalism-extras/v1.0.13/docs/functions/sleep.md): sleep function
+- [unzip](https://raw.githubusercontent.com/nshiab/journalism-extras/v1.0.13/docs/functions/unzip.md): unzip function
+- [zip](https://raw.githubusercontent.com/nshiab/journalism-extras/v1.0.13/docs/functions/zip.md): zip function

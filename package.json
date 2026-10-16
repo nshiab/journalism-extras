@@ -1,6 +1,6 @@
 {
   "name": "@nshiab/journalism-extras",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Useful TypeScript functions for journalism projects. This library holds any functions and classes that do not fit in the other journalism modules.",
   "homepage": "https://nshiab.github.io/journalism-extras/",
   "license": "MIT",
