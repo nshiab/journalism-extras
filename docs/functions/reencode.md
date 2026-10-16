@@ -1,4 +1,4 @@
-[**Journalism Extras v1.0.13**](../index.md)
+[**Journalism Extras v1.0.14**](../index.md)
 
 ***
 

@@ -1,8 +1,8 @@
-[**Journalism Extras v1.0.13**](index.md)
+[**Journalism Extras v1.0.14**](index.md)
 
 ***
 
-# Journalism Extras v1.0.13
+# Journalism Extras v1.0.14
 
 Filesystem, encoding, timing, and ID utilities for journalism projects.
 
