@@ -1,4 +1,4 @@
-[**Journalism Extras v1.0.14**](../index.md)
+[**Journalism Extras v1.0.15**](../index.md)
 
 ***
 
@@ -8,7 +8,7 @@
 
 > **getId**(`length?`): `string`
 
-Defined in: [getId.ts:26](https://github.com/nshiab/journalism-extras/blob/v1.0.14/src/extras/getId.ts#L26)
+Defined in: [getId.ts:26](https://github.com/nshiab/journalism-extras/blob/v1.0.15/src/extras/getId.ts#L26)
 
 Generates a unique ID string composed of letters and numbers, without spaces or special characters. By default, the ID has a length of 6 characters. While handy for general use, it is not cryptographically secure, meaning it should not be used for security-sensitive applications where true randomness and unpredictability are required.
 

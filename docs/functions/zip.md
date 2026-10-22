@@ -1,4 +1,4 @@
-[**Journalism Extras v1.0.14**](../index.md)
+[**Journalism Extras v1.0.15**](../index.md)
 
 ***
 
@@ -8,7 +8,7 @@
 
 > **zip**(`files`, `zipFile`): `void`
 
-Defined in: [zip.ts:24](https://github.com/nshiab/journalism-extras/blob/v1.0.14/src/extras/zip.ts#L24)
+Defined in: [zip.ts:24](https://github.com/nshiab/journalism-extras/blob/v1.0.15/src/extras/zip.ts#L24)
 
 Compresses one or more files or an entire folder into a single zip archive. This function is useful for bundling multiple assets, preparing data for transfer, or creating backups.
 

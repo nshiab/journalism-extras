@@ -1,4 +1,4 @@
-[**Journalism Extras v1.0.14**](../index.md)
+[**Journalism Extras v1.0.15**](../index.md)
 
 ***
 
@@ -8,7 +8,7 @@
 
 > **reencode**(`inputFilePath`, `outputFilePath`, `fromEncoding`, `toEncoding`, `options?`): `Promise`\<`void`\>
 
-Defined in: [reencode.ts:36](https://github.com/nshiab/journalism-extras/blob/v1.0.14/src/extras/reencode.ts#L36)
+Defined in: [reencode.ts:36](https://github.com/nshiab/journalism-extras/blob/v1.0.15/src/extras/reencode.ts#L36)
 
 Converts a file from one character encoding to another. This function is particularly optimized for handling large files.
 

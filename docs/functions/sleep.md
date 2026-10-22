@@ -1,4 +1,4 @@
-[**Journalism Extras v1.0.14**](../index.md)
+[**Journalism Extras v1.0.15**](../index.md)
 
 ***
 
@@ -8,7 +8,7 @@
 
 > **sleep**(`ms`, `options?`): `Promise`\<`void`\>
 
-Defined in: [sleep.ts:46](https://github.com/nshiab/journalism-extras/blob/v1.0.14/src/extras/sleep.ts#L46)
+Defined in: [sleep.ts:46](https://github.com/nshiab/journalism-extras/blob/v1.0.15/src/extras/sleep.ts#L46)
 
 Pauses the execution of an asynchronous function for a specified duration. This utility is useful for introducing delays in workflows, throttling requests, or simulating real-world latencies.
 

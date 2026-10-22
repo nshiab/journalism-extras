@@ -1,4 +1,4 @@
-**Journalism Extras v1.0.14**
+**Journalism Extras v1.0.15**
 
 ***
 

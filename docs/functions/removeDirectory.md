@@ -1,4 +1,4 @@
-[**Journalism Extras v1.0.14**](../index.md)
+[**Journalism Extras v1.0.15**](../index.md)
 
 ***
 
@@ -8,7 +8,7 @@
 
 > **removeDirectory**(`path`): `void`
 
-Defined in: [removeDirectory.ts:25](https://github.com/nshiab/journalism-extras/blob/v1.0.14/src/extras/removeDirectory.ts#L25)
+Defined in: [removeDirectory.ts:25](https://github.com/nshiab/journalism-extras/blob/v1.0.15/src/extras/removeDirectory.ts#L25)
 
 Removes a directory and all its contents recursively.
 

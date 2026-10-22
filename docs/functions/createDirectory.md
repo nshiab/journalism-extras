@@ -1,4 +1,4 @@
-[**Journalism Extras v1.0.14**](../index.md)
+[**Journalism Extras v1.0.15**](../index.md)
 
 ***
 
@@ -8,7 +8,7 @@
 
 > **createDirectory**(`path`): `void`
 
-Defined in: [createDirectory.ts:25](https://github.com/nshiab/journalism-extras/blob/v1.0.14/src/extras/createDirectory.ts#L25)
+Defined in: [createDirectory.ts:25](https://github.com/nshiab/journalism-extras/blob/v1.0.15/src/extras/createDirectory.ts#L25)
 
 Recursively creates a directory structure. This function is useful for ensuring that a path exists before writing a file to it.
 

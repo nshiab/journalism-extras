@@ -1,4 +1,4 @@
-[**Journalism Extras v1.0.14**](../index.md)
+[**Journalism Extras v1.0.15**](../index.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: DurationTracker
 
-Defined in: [DurationTracker.ts:31](https://github.com/nshiab/journalism-extras/blob/v1.0.14/src/extras/DurationTracker.ts#L31)
+Defined in: [DurationTracker.ts:31](https://github.com/nshiab/journalism-extras/blob/v1.0.15/src/extras/DurationTracker.ts#L31)
 
 A utility class for tracking the progress and estimating the remaining time of iterative processes. It calculates the average duration of completed iterations and uses this to project the time left for the remaining tasks. This is particularly useful for long-running operations where users need feedback on progress.
 
@@ -61,7 +61,7 @@ A string to append to the logged remaining time message. Defaults to an empty st
 
 > **new DurationTracker**(`length`, `options?`): `DurationTracker`
 
-Defined in: [DurationTracker.ts:50](https://github.com/nshiab/journalism-extras/blob/v1.0.14/src/extras/DurationTracker.ts#L50)
+Defined in: [DurationTracker.ts:50](https://github.com/nshiab/journalism-extras/blob/v1.0.15/src/extras/DurationTracker.ts#L50)
 
 Creates an instance of DurationTracker.
 
@@ -95,7 +95,7 @@ Optional settings for the tracker.
 
 > **length**: `number`
 
-Defined in: [DurationTracker.ts:39](https://github.com/nshiab/journalism-extras/blob/v1.0.14/src/extras/DurationTracker.ts#L39)
+Defined in: [DurationTracker.ts:39](https://github.com/nshiab/journalism-extras/blob/v1.0.15/src/extras/DurationTracker.ts#L39)
 
 The total number of iterations.
 
@@ -105,7 +105,7 @@ The total number of iterations.
 
 > **prefix**: `string`
 
-Defined in: [DurationTracker.ts:41](https://github.com/nshiab/journalism-extras/blob/v1.0.14/src/extras/DurationTracker.ts#L41)
+Defined in: [DurationTracker.ts:41](https://github.com/nshiab/journalism-extras/blob/v1.0.15/src/extras/DurationTracker.ts#L41)
 
 Optional prefix for the log message.
 
@@ -115,7 +115,7 @@ Optional prefix for the log message.
 
 > **suffix**: `string`
 
-Defined in: [DurationTracker.ts:43](https://github.com/nshiab/journalism-extras/blob/v1.0.14/src/extras/DurationTracker.ts#L43)
+Defined in: [DurationTracker.ts:43](https://github.com/nshiab/journalism-extras/blob/v1.0.15/src/extras/DurationTracker.ts#L43)
 
 Option suffix for the log message.
 
@@ -125,7 +125,7 @@ Option suffix for the log message.
 
 > **log**(): `void`
 
-Defined in: [DurationTracker.ts:93](https://github.com/nshiab/journalism-extras/blob/v1.0.14/src/extras/DurationTracker.ts#L93)
+Defined in: [DurationTracker.ts:93](https://github.com/nshiab/journalism-extras/blob/v1.0.15/src/extras/DurationTracker.ts#L93)
 
 Logs the estimated remaining time based on the average duration of previous iterations.
 
@@ -152,7 +152,7 @@ for (let i = 0; i < totalItems; i++) {
 
 > **start**(): `void`
 
-Defined in: [DurationTracker.ts:74](https://github.com/nshiab/journalism-extras/blob/v1.0.14/src/extras/DurationTracker.ts#L74)
+Defined in: [DurationTracker.ts:74](https://github.com/nshiab/journalism-extras/blob/v1.0.15/src/extras/DurationTracker.ts#L74)
 
 Starts the timer for the current iteration.
 
