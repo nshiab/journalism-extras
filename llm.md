@@ -78,6 +78,8 @@ console.log(id); // e.g., "a1B2c3D4e5"
 
 ### DurationTracker
 
+Defined in: [DurationTracker.ts:31](https://github.com/nshiab/journalism-extras/blob/v1.0.14/src/extras/DurationTracker.ts#L31)
+
 A utility class for tracking the progress and estimating the remaining time of iterative processes. It calculates the average duration of completed iterations and uses this to project the time left for the remaining tasks. This is particularly useful for long-running operations where users need feedback on progress.
 
 The tracker provides methods to mark the start of an iteration and to log the estimated remaining time. The log message can be customized with a prefix and suffix.
@@ -131,6 +133,8 @@ A string to append to the logged remaining time message. Defaults to an empty st
 
 > **new DurationTracker**(`length`, `options?`): [`DurationTracker`](#durationtracker)
 
+Defined in: [DurationTracker.ts:50](https://github.com/nshiab/journalism-extras/blob/v1.0.14/src/extras/DurationTracker.ts#L50)
+
 Creates an instance of DurationTracker.
 
 ###### Parameters
@@ -163,17 +167,23 @@ Optional settings for the tracker.
 
 > **length**: `number`
 
+Defined in: [DurationTracker.ts:39](https://github.com/nshiab/journalism-extras/blob/v1.0.14/src/extras/DurationTracker.ts#L39)
+
 The total number of iterations.
 
 ##### prefix
 
 > **prefix**: `string`
 
+Defined in: [DurationTracker.ts:41](https://github.com/nshiab/journalism-extras/blob/v1.0.14/src/extras/DurationTracker.ts#L41)
+
 Optional prefix for the log message.
 
 ##### suffix
 
 > **suffix**: `string`
+
+Defined in: [DurationTracker.ts:43](https://github.com/nshiab/journalism-extras/blob/v1.0.14/src/extras/DurationTracker.ts#L43)
 
 Option suffix for the log message.
 
@@ -182,6 +192,8 @@ Option suffix for the log message.
 ##### log()
 
 > **log**(): `void`
+
+Defined in: [DurationTracker.ts:93](https://github.com/nshiab/journalism-extras/blob/v1.0.14/src/extras/DurationTracker.ts#L93)
 
 Logs the estimated remaining time based on the average duration of previous iterations.
 
@@ -205,6 +217,8 @@ for (let i = 0; i < totalItems; i++) {
 ##### start()
 
 > **start**(): `void`
+
+Defined in: [DurationTracker.ts:74](https://github.com/nshiab/journalism-extras/blob/v1.0.14/src/extras/DurationTracker.ts#L74)
 
 Starts the timer for the current iteration.
 
@@ -230,6 +244,8 @@ for (let i = 0; i < totalItems; i++) {
 ### createDirectory()
 
 > **createDirectory**(`path`): `void`
+
+Defined in: [createDirectory.ts:25](https://github.com/nshiab/journalism-extras/blob/v1.0.14/src/extras/createDirectory.ts#L25)
 
 Recursively creates a directory structure. This function is useful for ensuring that a path exists before writing a file to it.
 
@@ -266,6 +282,8 @@ createDirectory("./output/data/my-file.json");
 ### getId()
 
 > **getId**(`length?`): `string`
+
+Defined in: [getId.ts:26](https://github.com/nshiab/journalism-extras/blob/v1.0.14/src/extras/getId.ts#L26)
 
 Generates a unique ID string composed of letters and numbers, without spaces or special characters. By default, the ID has a length of 6 characters. While handy for general use, it is not cryptographically secure, meaning it should not be used for security-sensitive applications where true randomness and unpredictability are required.
 
@@ -304,6 +322,8 @@ console.log(customId); // e.g., 'a1B2c3D4e5'
 ### reencode()
 
 > **reencode**(`inputFilePath`, `outputFilePath`, `fromEncoding`, `toEncoding`, `options?`): `Promise`\<`void`\>
+
+Defined in: [reencode.ts:36](https://github.com/nshiab/journalism-extras/blob/v1.0.14/src/extras/reencode.ts#L36)
 
 Converts a file from one character encoding to another. This function is particularly optimized for handling large files.
 
@@ -380,6 +400,8 @@ console.log("Large file re-encoded with custom buffer and BOM.");
 
 > **removeDirectory**(`path`): `void`
 
+Defined in: [removeDirectory.ts:25](https://github.com/nshiab/journalism-extras/blob/v1.0.14/src/extras/removeDirectory.ts#L25)
+
 Removes a directory and all its contents recursively.
 
 **Caution**: Use this function with care, as it permanently deletes files and directories without sending them to the recycle bin or trash. Ensure that the `path` provided is correct to avoid accidental data loss.
@@ -417,6 +439,8 @@ console.log("Attempted to remove non-existent folder (no error thrown).");
 ### sleep()
 
 > **sleep**(`ms`, `options?`): `Promise`\<`void`\>
+
+Defined in: [sleep.ts:46](https://github.com/nshiab/journalism-extras/blob/v1.0.14/src/extras/sleep.ts#L46)
 
 Pauses the execution of an asynchronous function for a specified duration. This utility is useful for introducing delays in workflows, throttling requests, or simulating real-world latencies.
 
@@ -490,6 +514,8 @@ await sleep(2000, { log: true });
 
 > **unzip**(`zippedFile`, `output`, `options?`): `void`
 
+Defined in: [unzip.ts:26](https://github.com/nshiab/journalism-extras/blob/v1.0.14/src/extras/unzip.ts#L26)
+
 Unzips a given zipped file to a specified output directory. This function provides a convenient way to extract compressed archives, commonly used for distributing data or software. It offers an option to delete the original zipped file after successful extraction, which is useful for cleanup operations.
 
 #### Parameters
@@ -541,6 +567,8 @@ console.log("File unzipped and original zipped file deleted.");
 ### zip()
 
 > **zip**(`files`, `zipFile`): `void`
+
+Defined in: [zip.ts:24](https://github.com/nshiab/journalism-extras/blob/v1.0.14/src/extras/zip.ts#L24)
 
 Compresses one or more files or an entire folder into a single zip archive. This function is useful for bundling multiple assets, preparing data for transfer, or creating backups.
 
